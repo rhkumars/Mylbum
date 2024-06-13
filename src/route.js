@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "./Authentication/Auth";
 import Settings from "./Settings/Settings";
-import FetchContent from "./Contentful/FetchContent";
+import FetchContent from "./Content/FetchContent";
 import Cards from "./Dashboard/Cards/Cards";
 
 const AppRoutes = () => {
