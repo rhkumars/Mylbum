@@ -1,0 +1,6 @@
+.pic {
+    width: -webkit-fill-available;
+    height: 100vh;
+    object-fit: contain;
+    background-color: black;
+}
