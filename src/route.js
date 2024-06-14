@@ -7,7 +7,7 @@ import Cards from "./Dashboard/Cards/Cards";
 
 const AppRoutes = () => {
   return (
-    <Router>
+    <Router basename='/index.html'>
       <Routes>
         <Route exact path="/" element={<FetchContent />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
