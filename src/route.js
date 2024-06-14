@@ -9,9 +9,9 @@ const AppRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Auth />}></Route>
+        <Route exact path="/" element={<FetchContent />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
-        <Route path="/pics" element={<FetchContent />}></Route>
+        <Route path="/auth" element={<Auth />}></Route>
         <Route path="/cards/:id" element={<Cards />}></Route>
       </Routes>
     </Router>
