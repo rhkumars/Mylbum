@@ -1,18 +1,25 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import "./Gallery.css";
 
-const Gallery = (props) => {
-  
+const Gallery = () => {
   const navigate = useNavigate();
-  const [images, setImages] = useState(props.images);
+  const { id } = useParams();
+  const images = useSelector((state) => state.mypics.album);
 
+  useEffect(() => {
+    if (images.length === 0) {
+      navigate(`/`);
+    }
+  }, [images, id]);
 
   function handleClick(e) {
     console.log(`/cards/:${e.target.id}`);
     navigate(`/cards/:${e.target.id}`);
   }
-console.log(images);
+
   return (
     <div className="gallery-container">
       <h1>Image Gallery</h1>

@@ -1,26 +1,24 @@
-import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useState } from "react"; // Add this line
 import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { setanimation } from '../store/mypicSlice';
+import TextField from "@mui/material/TextField";
 import "./Settings.css";
+import { encryptString } from "../Shared/utils";
 
 function Settings(props) {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [animi, setAnimi] = useState(0);
+  const [accessKey, setAccessKey] = useState("");
 
   const handleChange = (event) => {
-    setAnimi(event.target.value);
-    dispatch(setanimation(event.target.value))
+    const value = event.currentTarget.value;
+    const encryptedValue = encryptString(value,process.env.REACT_APP_SECRET_KEY);
+    setAccessKey(encryptedValue);
+
   };
 
   const goHandler = () => {
-    navigate("/pics");
+    navigate("/");
   };
 
   return (
@@ -35,21 +33,22 @@ function Settings(props) {
           autoComplete="off"
           className="box"
         >
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <Select
-              value={animi}
-              onChange={handleChange}
-              displayEmpty
+        <TextField
+            id="outlined-basic"
+            label="Access Key"
+            variant="outlined"
             className="input"
-            >
-              
-              <MenuItem value={0}>Clouds</MenuItem>
-              <MenuItem value={1}>Drift Clouds</MenuItem>
-              <MenuItem value={2}>Rain</MenuItem>
-              <MenuItem value={3}>Splash Rain</MenuItem>
-            </Select>
-            
-          </FormControl>
+            onChange={handleChange}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Encrypted Key"
+            variant="outlined"
+            className="input"
+            value={accessKey}
+          />
+          {/* <p>{accessKey}</p> */}
+
 
           <Button variant="outlined" onClick={goHandler} className="submit">
             Go

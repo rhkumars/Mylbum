@@ -1,24 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   animation: 0,
+  albums: [],
   album: [],
-}
+};
 
 export const mypicSlice = createSlice({
-  name: 'mypics',
+  name: "mypics",
   initialState,
   reducers: {
     setanimation: (state, action) => {
-      state.animation = action.payload
+      state.animation = action.payload;
     },
-    setResponse: (state, action) => {
-      state.album = action.payload
+    setAlbums: (state, action) => {
+      state.albums = action.payload;
+    },
+    setAlbum: (state, action) => {
+      state.album = action.payload;
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setanimation, setResponse} = mypicSlice.actions
+export const { setanimation, setAlbums, setAlbum } = mypicSlice.actions;
 
-export default mypicSlice.reducer
+export default mypicSlice.reducer;

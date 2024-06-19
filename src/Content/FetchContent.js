@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { createClient } from "contentful";
 import { useDispatch } from "react-redux";
-
-import Gallery from "../Dashboard/Gallery/Gallery";
-import { setResponse } from "../store/mypicSlice";
+import { useNavigate } from "react-router-dom";
+import Dashboard from "../Dashboard/Dashboard";
+import { setAlbums } from "../store/mypicSlice";
+import { decryptString } from "../Shared/utils";
 
 const SPACE_ID = "jbuh6ffk2dc1";
 const ACCESS_TOKEN = "vIgkWsaGQS-aMGClV9awdFmf4JM-3NEL9yqennzrHKA";
@@ -13,38 +14,48 @@ const client = createClient({
 });
 
 export default function FetchContent() {
-  const [entries, setEntries] = useState([]);
-  const [urls, setURLs] = useState([]);
+  const navigate = useNavigate();
+  const albums = [];
   const dispatch = useDispatch();
+  const secretKey = process.env.REACT_APP_SECRET_KEY;
 
   useEffect(() => {
-    client
-      .getEntries()
-      .then((response) => loadData(response))
-      .catch(console.error);
+    const accessKey = localStorage.getItem("accessKey");
+    if (!accessKey) {
+      navigate("/auth");
+    } else {
+      let decryptedKey = decryptString(accessKey, secretKey);
+      client
+        .getEntries({ "metadata.tags.sys.id[all]": decryptedKey })
+        .then((response) => loadData(response))
+        .catch(console.error);
+    }
   }, []);
 
   function loadData(response) {
-    setEntries(response.items);
     getURL(response.items);
   }
 
   function getURL(entries) {
-    let img = entries[0]?.fields?.defaultImages;
-
-    if (img) {
-      for (let key in img) {
-        if (
-          img[key].fields.file.contentType === "image/jpeg" ||
-          img[key].fields.file.contentType === "image/png"
-        ) {
-          urls.push(img[key].fields.file.url);
+    if (entries.length !== 0) {
+      for (let key in entries) {
+        let img = entries[key]?.fields?.defaultImages;
+        const urls = [];
+        if (img) {
+          for (let key in img) {
+            if (
+              img[key].fields.file.contentType === "image/jpeg" ||
+              img[key].fields.file.contentType === "image/png"
+            ) {
+              urls.push(img[key].fields.file.url);
+            }
+          }
         }
+        albums[key] = urls;
       }
+      dispatch(setAlbums([...albums]));
     }
-    console.log(urls);
-    dispatch(setResponse([...urls]));
   }
 
-  return <div>{urls && <Gallery images={urls} />}</div>;
+  return <div>{albums && <Dashboard />}</div>;
 }
