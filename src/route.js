@@ -10,11 +10,12 @@ const AppRoutes = () => {
   return (
     <Router basename="/">
       <Routes>
-        <Route path="/" element={<FetchContent />}></Route>
-        <Route path="/gallery/:id" element={<Gallery />}></Route>
-        <Route path="/settings" element={<Settings />}></Route>
-        <Route path="/auth" element={<Auth />}></Route>
-        <Route path="/cards/:id" element={<Cards />}></Route>
+        <Route path="/" element={<FetchContent />} />
+        <Route path="/gallery/:id" element={<Gallery />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/cards/:id" element={<Cards />} />
+        <Route path="*" element={<FetchContent />} />
       </Routes>
     </Router>
   );

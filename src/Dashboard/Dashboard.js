@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,19 +16,31 @@ const Dashboard = () => {
     navigate(`/gallery/:${e.target.id}`);
   }
 
+  function backtoAuth() {
+    navigate("/auth");
+  }
+
   return (
-    <div className="dashboard-card-container">
-      {albums.map((image, index) => (
-        <div className="dashboard-card">
-          <img
-            id={index}
-            src={image[0]}
-            alt={index}
-            onClick={(e) => handleClick(e)}
-          />
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="dashboard-card-container">
+        {albums.map((image, index) => (
+          <div className="dashboard-card">
+            <img
+              id={index}
+              src={image[0]}
+              alt={index}
+              onClick={(e) => handleClick(e)}
+            />
+          </div>
+        ))}
+        {!albums.length && (
+          <div className="dashboard-card">
+            <p>Unable to fetch images, please validate your access key</p>
+            <button onClick={backtoAuth}>Back to Auth</button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
