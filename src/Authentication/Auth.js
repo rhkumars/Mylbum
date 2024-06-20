@@ -16,6 +16,9 @@ function Auth(props) {
     navigate("/");
   };
 
+  const gotoSettings = () => {
+    navigate("/settings");
+  }
   
   return (
     <>
@@ -39,6 +42,9 @@ function Auth(props) {
           <Button variant="outlined" onClick={goHandler} className="submit">
             Go
           </Button>
+          
+          <img src="gearwheel.jpeg" alt="Settings" className="auth-icon" onClick={gotoSettings}/>
+
         </Box>
       </div>
     </>
