@@ -1,12 +1,13 @@
 .gallery-container {
   height: 100vh;
+  padding: 20px;
 }
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   overflow: scroll;
-  height: 85vh;
+  height: 95vh;
 }
 
 .gallery img {

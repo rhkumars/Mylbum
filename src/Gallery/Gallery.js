@@ -33,9 +33,9 @@ const Gallery = () => {
           />
         ))}
       </div>
-      <div className="footer">
+      {/* <div className="footer">
         <h4>Footer</h4>
-      </div>
+      </div> */}
     </div>
   );
 };
