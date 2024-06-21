@@ -22,7 +22,6 @@ const Gallery = () => {
 
   return (
     <div className="gallery-container">
-      <h1>Image Gallery</h1>
       <div className="gallery">
         {images.map((image, index) => (
           <img

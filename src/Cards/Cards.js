@@ -66,7 +66,9 @@ const CardsComponent = () => {
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
