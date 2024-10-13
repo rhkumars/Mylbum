@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## User Guide
+### Generate Access Token
+
+In settings page, enter the tag to be encrypted in Access Token field and click submit
+Encrypted Token will be generated in Encrypted Token field.
+Share the token with guests to access the application.

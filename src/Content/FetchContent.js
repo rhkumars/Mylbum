@@ -6,8 +6,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import { setAlbums } from "../store/mypicSlice";
 import { decryptString } from "../Shared/utils";
 
-const SPACE_ID = "jbuh6ffk2dc1";
-const ACCESS_TOKEN = "vIgkWsaGQS-aMGClV9awdFmf4JM-3NEL9yqennzrHKA";
+const SPACE_ID = "u7zlozaejruw";
+const ACCESS_TOKEN = "mv0E72wjg8hg3PYB8oaoFdLHKpDwS0iRX80UP6ShdNk";
 const client = createClient({
   space: SPACE_ID,
   accessToken: ACCESS_TOKEN,
