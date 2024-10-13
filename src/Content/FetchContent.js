@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from "react";
 import { createClient } from "contentful";
 import { useDispatch } from "react-redux";
@@ -39,7 +40,7 @@ export default function FetchContent() {
   function getURL(entries) {
     if (entries.length !== 0) {
       for (let key in entries) {
-        let img = entries[key]?.fields?.defaultImages;
+        let img = entries[key]?.fields?.pictures;
         const urls = [];
         if (img) {
           for (let key in img) {
